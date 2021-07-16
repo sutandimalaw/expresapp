@@ -1,0 +1,16 @@
+extends layout
+
+//-block content
+  h1= title
+  p Welcome to #{title}
+
+block variables
+    - var title = "Home"
+
+block content
+    h2.text-center Express App
+
+    .row
+        .offset-sm-2.col-sm-8
+            .jumbotron.text-center.
+                Welcome

@@ -1,0 +1,46 @@
+extends layout
+
+block styles
+    link(rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css")
+
+block variables
+    - var title = "Dashboard"
+
+block content
+    h2.text-center Dashboard
+
+    .row
+        .offset-sm-2.col-sm-8
+            .jumbotron.text-center.
+                Dashboard Page Avows.
+
+    .row
+        .col-md
+            table.hover#dt-table
+                thead 
+                    tr
+                        th Product Name
+                        th Price
+                tbody
+
+block scripts
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+    script(type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js").
+    script.
+        $(document).ready(function() {
+            $('#dt-table').DataTable({
+                "processing"    : true,
+                "serverSide"    : true,
+                "ordering"      : true,
+                "lengthMenu"    : [3, 5, 10, 25, 50, 100],
+                "ajax": {
+                    "url"       : "/dashboard/search",
+                    "type"      : "POST",
+                    "dataSrc"   : "data"
+                },
+                columns: [ 
+                    { data : "title" },
+                    { data : "price" }
+                ]
+            });
+        });
